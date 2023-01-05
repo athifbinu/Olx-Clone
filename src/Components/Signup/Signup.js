@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+
 
 import Logo from '../../olx-logo.png';
+import { FirebaseContext } from '../../store/FirebaseContext';
 import './Signup.css';
 
 export default function Signup() {
@@ -8,6 +10,7 @@ export default function Signup() {
      const [email,setEmail]=useState('');
      const [pone,setPone]=useState('')
      const [password,setPassword]=useState('')
+     const {firebase} =useContext(FirebaseContext)
      
 
      //store state
@@ -16,13 +19,13 @@ export default function Signup() {
 
      const handleSubmit=(e)=> {
       e.preventDefault();
-      console.log(username)
+      console.log(firebase)
      }
 
   return (
     <div>
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+      <img width="200px" height="200px" src={Logo} alt='logo'></img>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
@@ -74,8 +77,9 @@ export default function Signup() {
           <br />
           <br />
           <button>Signup</button>
+          
         </form>
-        <a>Login</a>
+        <a >Login</a>
       </div>
     </div>
   );
