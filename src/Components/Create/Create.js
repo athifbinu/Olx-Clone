@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
+import { useState } from 'react';
 
 const Create = () => {
+       const [name,setName]=useState('')
+       const [cateory,setCategory]=useState('');
+       const [price,setPrice]=useState('');
+       const [image,setImage]=useState('')
+
   return (
     <Fragment>
       <Header />
@@ -14,6 +20,8 @@ const Create = () => {
             <input
               className="input"
               type="text"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
               id="fname"
               name="Name"
               defaultValue="John"
@@ -24,6 +32,8 @@ const Create = () => {
             <input
               className="input"
               type="text"
+              value={cateory}
+              onChange={(e)=>{setCategory(e.target.value)}}
               id="fname"
               name="category"
               defaultValue="John"
@@ -35,10 +45,12 @@ const Create = () => {
             <br />
           </form>
           <br />
-          <img alt="Posts" width="200px" height="200px" src=""></img>
+          <img  alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image):''}></img>
           <form>
             <br />
-            <input type="file" />
+            <input onChange={(e)=>{
+              setImage(e.target.files[0])
+            }} type="file" />
             <br />
             <button className="uploadBtn">upload and Submit</button>
           </form>
